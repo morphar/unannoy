@@ -45,14 +45,14 @@
 
     // Doesn't work in Safari
     function removeOverlays() {
-        let elms = document.body.childNodes;
+        let elms = document.getElementsByTagName('*');
 
         let viewportWidth = window.innerWidth;
         let viewportHeight = window.innerHeight;
 
         for (let i = elms.length - 1; i >= 0; i--) {
             if (elms[i] instanceof Element) {
-                if (elms[i].className.indexOf('overlay') !== -1) {
+                if (elms[i].className && elms[i].className.indexOf && elms[i].className.indexOf('overlay') !== -1) {
                     removeElement(elms[i]);
                     continue;
                 }
@@ -60,6 +60,17 @@
                 let width = elms[i].offsetWidth;
                 let height = elms[i].offsetHeight;
                 if (width == viewportWidth && height == viewportHeight) {
+                    removeElement(elms[i]);
+                    continue;
+                }
+
+                let computedBefore = getComputedStyle(elms[i], ':before')
+                width = computedBefore.width
+                width = parseInt(width.substr(0, width.length-2))
+                height = computedBefore.height
+                height = parseInt(height.substr(0, height.length-2))
+
+                if (width >= viewportWidth && height >= viewportHeight) {
                     removeElement(elms[i]);
                 }
             }
@@ -98,6 +109,8 @@
     // Generics
     removeClassByQuery('html', 'locked')
     removeClassByQuery('body', 'locked')
+    removeClassByQuery('html', 'noScroll')
+    removeClassByQuery('body', 'noScroll')
 
     // Remove overlays
     removeOverlays();
