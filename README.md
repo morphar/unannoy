@@ -1,2 +1,2 @@
 # unannoy
-Remove those pesky cookie overlays
+Remove those pesky cookie overlays and allow scrolling
