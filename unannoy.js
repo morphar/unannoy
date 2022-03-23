@@ -109,6 +109,9 @@
     document.getElementsByTagName('html')[0].style.cssText = cssText;
     document.body.style.cssText = cssText;
 
+    // OneTrust Consent SDK
+    removeById('onetrust-consent-sdk');
+
     // Google funding "choice"
     removeByClass('fc-ab-root');
     removeByAttribute('iframe', 'name', 'googlefcInactive');
