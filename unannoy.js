@@ -1,5 +1,5 @@
-(function() {
-    function removeClass(className) {
+(function () {
+    function removeClass (className) {
         let elms = document.getElementsByClassName(className);
 
         let re = new RegExp(className, 'gi');
@@ -10,7 +10,7 @@
         }
     }
 
-    function removeClassByQuery(query, className) {
+    function removeClassByQuery (query, className) {
         let re = new RegExp(className, 'gi');
         let elms = document.querySelectorAll(query);
         for (let i = elms.length - 1; i >= 0; i--) {
@@ -19,7 +19,7 @@
         }
     }
 
-    function removeByClassQuery(query, className) {
+    function removeByClassQuery (query, className) {
         let re = new RegExp(className, 'gi');
         let elms = document.querySelectorAll(query);
         for (let i = elms.length - 1; i >= 0; i--) {
@@ -27,31 +27,31 @@
         }
     }
 
-    function removeById(id) {
+    function removeById (id) {
         removeElement(document.getElementById(id));
     }
 
-    function removeElement(node) {
+    function removeElement (node) {
         if (node && typeof node !== 'undefined' && typeof node.parentNode !== 'undefined') {
             node.parentNode.removeChild(node);
         }
     }
 
-    function removeByClass(className) {
+    function removeByClass (className) {
         let elms = document.getElementsByClassName(className);
         for (let i = elms.length - 1; i >= 0; i--) {
             removeElement(elms[i]);
         }
     }
 
-    function removeByAttribute(tag, attrName, attrValue) {
+    function removeByAttribute (tag, attrName, attrValue) {
         let elms = document.querySelectorAll(`${tag}[${attrName}='${attrValue}']`);
         for (let i = elms.length - 1; i >= 0; i--) {
             removeElement(elms[i]);
         }
     }
 
-    function getHighestZIndex() {
+    function getHighestZIndex () {
         let elms = document.getElementsByTagName('*');
         let highestZ = 0;
         for (let i = elms.length - 1; i >= 0; i--) {
@@ -64,7 +64,7 @@
         return highestZ;
     }
 
-    function removeOverlays() {
+    function removeOverlays () {
         let elms = document.getElementsByTagName('*');
 
         let viewportWidth = window.innerWidth;
@@ -94,9 +94,9 @@
 
                 let computedBefore = getComputedStyle(elms[i], ':before');
                 width = computedBefore.width;
-                width = parseInt(width.substr(0, width.length-2));
+                width = parseInt(width.substr(0, width.length - 2));
                 height = computedBefore.height;
-                height = parseInt(height.substr(0, height.length-2));
+                height = parseInt(height.substr(0, height.length - 2));
 
                 if (width >= viewportWidth && height >= viewportHeight) {
                     removeElement(elms[i]);
